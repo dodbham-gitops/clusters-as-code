@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  url: ssh://git@github.com/dodbham-gitops/chalupa-bot-app-config.git
+  url: https://github.com/dodbham-gitops/chalupa-bot-app-config
   secretRef:
     name: git-clone
   ref:
