@@ -41,7 +41,6 @@ spec:
   interval: 1m
   path: "./staging"
   prune: true
-  targetNamespace: flux-system
   sourceRef:
     kind: GitRepository
     name: chalupa-bot-app-config-repo
