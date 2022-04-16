@@ -1,0 +1,47 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: chalupa-bot-app-config-repo
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: ssh://git@github.com/dodbham-gitops/chalupa-bot-app-config.git
+  secretRef:
+    name: git-clone
+  ref:
+    branch: main
+  ignore: |
+    # exclude all
+    /*
+    # include flux-resources and staging
+    !/flux-resources
+    !/prod
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: chalupa-bot-app-config-resources
+  namespace: flux-system
+spec:
+  interval: 1m
+  path: "./flux-resources"
+  prune: true
+  targetNamespace: flux-system
+  sourceRef:
+    kind: GitRepository
+    name: chalupa-bot-app-config-repo
+    namespace: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: chalupa-bot-prod
+  namespace: flux-system
+spec:
+  interval: 1m
+  path: "./prod"
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: chalupa-bot-app-config-repo
+    namespace: flux-system
