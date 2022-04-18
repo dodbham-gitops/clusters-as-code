@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1m
-  url: ssh://git@github.com/dodbham-gitops/img-updater-bot
+  url: ssh://git@github.com/dodbham-gitops/img-updater-config.git
   secretRef:
     name: git-clone
   ref:
@@ -20,7 +20,7 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: img-updater-bot-resources
+  name: img-updater-resources
   namespace: flux-system
 spec:
   interval: 1m
@@ -29,7 +29,7 @@ spec:
   targetNamespace: flux-system
   sourceRef:
     kind: GitRepository
-    name: img-updater-bot-resources
+    name: img-updater-repo
     namespace: flux-system
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -43,5 +43,5 @@ spec:
   prune: true
   sourceRef:
     kind: GitRepository
-    name: img-updater
+    name: img-updater-repo
     namespace: flux-system
