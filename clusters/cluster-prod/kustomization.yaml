@@ -4,3 +4,4 @@ resources:
 - flux-system/
 - flux-secrets-ks.yaml
 - dodbham-app-config.yaml
+- img-updater.yaml
