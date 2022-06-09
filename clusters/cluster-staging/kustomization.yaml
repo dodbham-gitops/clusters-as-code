@@ -4,3 +4,5 @@ resources:
 - flux-system/
 - flux-secrets-ks.yaml
 - dodbham-app-config.yaml
+- weave-gitops-helmrelease.yaml
+- weave-gitops-source.yaml
